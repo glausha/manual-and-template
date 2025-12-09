@@ -9,6 +9,8 @@
 以下のMarkdownをコピーして、各リポジトリのREADME.mdとして使用すること。
 `[プレースホルダー]` の部分は適宜置き換えること。
 
+> **Note**: システムアーキテクチャ図の詳細版は [diagrams/ads_system_architecture.md](diagrams/ads_system_architecture.md) を参照すること。
+
 ---
 
 ```markdown
@@ -29,16 +31,27 @@
 
 ### システム構成における位置づけ
 
+> 詳細なアーキテクチャ図は [diagrams/ads_system_architecture.md](../diagrams/ads_system_architecture.md) を参照すること。
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#FFFFFF', 'primaryBorderColor': '#4A90E2', 'lineColor': '#555555'}}}%%
+flowchart LR
+    subgraph ADS["🚗 ADS System Architecture"]
+        P1["📡 Sensors\nセンサー"]
+        P2["🧠 Perception\n認知"]
+        P3["🗺️ Planning\n計画"]
+        P4["⚙️ Control\n制御"]
+        
+        P1 --> P2 --> P3 --> P4
+    end
+    
+    style P1 fill:#E9F7EC,stroke:#4A90E2,stroke-width:2px
+    style P2 fill:#E8F1FF,stroke:#4A90E2,stroke-width:2px
+    style P3 fill:#FFF3E0,stroke:#4A90E2,stroke-width:2px
+    style P4 fill:#FCE4EC,stroke:#4A90E2,stroke-width:2px
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    ADS System Architecture                   │
-├─────────────────────────────────────────────────────────────┤
-│  ┌───────────┐   ┌───────────┐   ┌───────────┐             │
-│  │ Perception│──▶│  Planning │──▶│  Control  │             │
-│  │  [本リポ] │   │           │   │           │             │
-│  └───────────┘   └───────────┘   └───────────┘             │
-└─────────────────────────────────────────────────────────────┘
-```
+
+**[本リポジトリの位置]**: 上記の `[該当モジュール名]` に該当する。
 
 ---
 
@@ -156,12 +169,34 @@ make coverage
 
 ### ブランチ戦略
 
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#FFFFFF', 'primaryBorderColor': '#4A90E2', 'lineColor': '#555555'}}}%%
+gitGraph
+    commit id: "Initial"
+    branch develop
+    checkout develop
+    commit id: "Feature Base"
+    branch feature/xxx
+    checkout feature/xxx
+    commit id: "Implement"
+    commit id: "Test"
+    checkout develop
+    merge feature/xxx id: "Merge Feature"
+    branch bugfix/yyy
+    checkout bugfix/yyy
+    commit id: "Fix Bug"
+    checkout develop
+    merge bugfix/yyy id: "Merge Bugfix"
+    checkout main
+    merge develop id: "Release v1.0"
 ```
-main          ← 本番リリースブランチ
-  └── develop ← 開発統合ブランチ
-        └── feature/xxx ← 機能開発ブランチ
-        └── bugfix/xxx  ← バグ修正ブランチ
-```
+
+| ブランチ | 用途 | 派生元 |
+|---------|------|--------|
+| `main` | 本番リリースブランチ | - |
+| `develop` | 開発統合ブランチ | `main` |
+| `feature/xxx` | 機能開発ブランチ | `develop` |
+| `bugfix/xxx` | バグ修正ブランチ | `develop` |
 
 ### コミットメッセージ
 
@@ -174,6 +209,15 @@ main          ← 本番リリースブランチ
 [docs] API仕様書を更新 refs #789
 ```
 
+| 種別 | 用途 |
+|------|------|
+| `feat` | 新機能追加 |
+| `fix` | バグ修正 |
+| `docs` | ドキュメント更新 |
+| `refactor` | リファクタリング |
+| `test` | テスト追加・修正 |
+| `chore` | その他（ビルド設定など） |
+
 ### コーディング規約
 
 - C++: [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html) に準拠
@@ -182,6 +226,24 @@ main          ← 本番リリースブランチ
 ---
 
 ## CI/CD パイプライン
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#FFFFFF', 'primaryBorderColor': '#4A90E2', 'lineColor': '#555555'}}}%%
+flowchart LR
+    subgraph Pipeline["🔄 CI/CD Pipeline"]
+        L["🔍 Lint\n静的解析"]
+        B["🔨 Build\nビルド"]
+        T["🧪 Test\nテスト"]
+        D["🚀 Deploy\nデプロイ"]
+        
+        L --> B --> T --> D
+    end
+    
+    style L fill:#E8F1FF,stroke:#4A90E2,stroke-width:2px
+    style B fill:#E9F7EC,stroke:#4A90E2,stroke-width:2px
+    style T fill:#FFF3E0,stroke:#4A90E2,stroke-width:2px
+    style D fill:#FCE4EC,stroke:#4A90E2,stroke-width:2px
+```
 
 | ステージ | 内容 | 実行条件 |
 |---------|------|----------|
