@@ -1,0 +1,294 @@
+# =============================================================================
+# ADS Project .gitignore
+# 自動運転システム開発プロジェクト用 Git除外設定
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# IDE / Editor
+# -----------------------------------------------------------------------------
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains (CLion, PyCharm, IntelliJ)
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse
+.project
+.cproject
+.settings/
+.classpath
+
+# Vim/Neovim
+*.swp
+*.swo
+*~
+.netrwhist
+tags
+
+# Emacs
+*~
+\#*\#
+.#*
+
+# -----------------------------------------------------------------------------
+# Build Outputs
+# -----------------------------------------------------------------------------
+# CMake
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Compiled files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Python virtual environments
+venv/
+ENV/
+env/
+.env/
+
+# -----------------------------------------------------------------------------
+# Package / Dependency Management
+# -----------------------------------------------------------------------------
+# Python
+*.egg
+*.egg-info/
+dist/
+eggs/
+.eggs/
+wheels/
+*.whl
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Conan (C++ package manager)
+conan.lock
+conanbuildinfo.*
+conaninfo.txt
+graph_info.json
+
+# -----------------------------------------------------------------------------
+# Testing / Coverage
+# -----------------------------------------------------------------------------
+# Test outputs
+*.log
+test-results/
+test-reports/
+junit*.xml
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage/
+coverage.xml
+*.gcov
+*.gcda
+*.gcno
+lcov.info
+
+# Pytest
+.pytest_cache/
+.tox/
+.nox/
+
+# -----------------------------------------------------------------------------
+# Documentation
+# -----------------------------------------------------------------------------
+# Sphinx
+docs/_build/
+docs/api/_autosummary/
+
+# Doxygen
+docs/doxygen/html/
+docs/doxygen/latex/
+Doxyfile.bak
+
+# -----------------------------------------------------------------------------
+# Machine Learning / AI (01_Perception)
+# -----------------------------------------------------------------------------
+# Model files (大容量 - Git LFSで管理する場合は除外)
+# *.onnx
+# *.pt
+# *.pth
+# *.pb
+# *.h5
+# *.tflite
+
+# Training outputs
+checkpoints/
+logs/
+runs/
+tensorboard/
+wandb/
+
+# Dataset (ローカルキャッシュ)
+datasets/
+data/raw/
+data/processed/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# -----------------------------------------------------------------------------
+# Embedded / ECU (03_Embedded)
+# -----------------------------------------------------------------------------
+# Binary files
+*.bin
+*.hex
+*.elf
+*.map
+
+# Debug files
+*.dSYM/
+
+# JTAG/Debug logs
+debug_logs/
+
+# -----------------------------------------------------------------------------
+# Simulation (04_QA)
+# -----------------------------------------------------------------------------
+# Simulation outputs
+sim_results/
+sim_logs/
+*.bag
+*.db3
+
+# CARLA / LGSVL outputs
+CarlaUE4/
+lgsvl_output/
+
+# -----------------------------------------------------------------------------
+# OS Generated Files
+# -----------------------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.Trash-*
+.nfs*
+
+# -----------------------------------------------------------------------------
+# Private / Sensitive Configuration
+# -----------------------------------------------------------------------------
+# 環境設定ファイル
+.env
+.env.local
+.env.*.local
+*.env
+
+# 認証情報
+credentials.json
+secrets.json
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# AWS
+.aws/
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# API keys
+api_keys.txt
+api_keys.json
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# -----------------------------------------------------------------------------
+# Project Specific
+# -----------------------------------------------------------------------------
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Log files
+logs/
+*.log
+
+# Local configuration (個人設定)
+local.conf
+local.yaml
+local.json
+*.local.*
+
+# MCP configuration (環境固有)
+.mcp.json
+
+# -----------------------------------------------------------------------------
+# Large Files (Git LFSで管理しない場合は除外)
+# -----------------------------------------------------------------------------
+# 動画ファイル
+# *.mp4
+# *.avi
+# *.mov
+
+# 画像ファイル（大量の場合）
+# *.png
+# *.jpg
+# *.jpeg
+
+# 点群データ
+# *.pcd
+# *.ply
+# *.las
+
+# ROS bag files
+# *.bag
